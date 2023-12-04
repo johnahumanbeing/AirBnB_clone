@@ -74,19 +74,3 @@ $
 # Authors :
 - **JOHN BARAKA NGALA** <[johnahumanbeing](https://github.com/johnahumanbeing)>
 - **IAN MBAI NJUGUNA** <[programmer-88](https://github.com/programmer-88)>
-
-## Tasks
-
-| Task | File |
-| ---- | ---- |
-| 0. README, AUTHORS | [SOON](./) |
-| 1. Be pycodestyle compliant! | [SOON](./) |
-| 2. Unittests | [SOON](./) |
-| 3. BaseModel | [SOON](./) |
-| 4. Create BaseModel from dictionary | [SOON](./) |
-| 5. Store first object | [SOON](./) |
-| 6. Console 0.0.1 | [SOON](./) |
-| 7. Console 0.1 | [SOON](./) |
-| 8. First User | [SOON](./) |
-| 9. More classes! | [SOON](./) |
-| 10. Console 1.0 | [SOON](./) |
