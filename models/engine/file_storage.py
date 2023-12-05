@@ -21,7 +21,11 @@ class FileStorage:
             json.dump(objs_dict, f)
 
     def reload(self):
-        with open(self.__file_path) as json_file:
-            json_obj = json.load(json_file)
-            for key in json_obj:
-                self.__objects[key] = BaseModel(**json_obj[key])
+        try:
+            with open(self.__file_path, "r", encoding="UTF8") as f:
+                data = json.load(f)
+                for key, value in data.items():
+                    attr_value = eval(value["__class__"])(**value)
+                    self.__objects[key] = attr_value
+        except FileNotFoundError:
+            pass
