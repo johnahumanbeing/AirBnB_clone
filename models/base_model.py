@@ -9,7 +9,10 @@ import models
 
 class BaseModel:
     """
-
+    Initialize a new BaseModel
+    Args:
+        *args: unused parameters
+        **kwargs: attributes
     """
     def __init__(self, *args, **kwargs):
         self.id= str(uuid4())
@@ -30,14 +33,27 @@ class BaseModel:
         models.storage.new(self)
 
     def __str__(self):
+        """
+        Return a string representation of the BaseModel
+        Returns:
+            str representation of the BaseModel
+        """
         className = self.__class__.__name__
         return "[{}] ({}) {}".format(className, self.id, self.__dict__)
 
     def save(self):
+        """
+        update the model
+        """
         self.updated_at = datetime.now()
         models.storage.save()
 
     def to_dict(self):
+        """
+        returns a dict of keys and values
+        Returns:
+            dict of keys and values
+        """
         dict_copy = self.__dict__.copy()
         dict_copy["__class__"] = self.__class__.__name__
         dict_copy["created_at"] = self.created_at.isoformat()
