@@ -13,7 +13,9 @@ class FileStorage:
         self.__objects[obj.id] = obj
 
     def save(self):
-        """ serializes __objects to the JSON file """
+        """
+        Serialize __objects to the JSON file (including deletions)
+        """
         objs_dict = {k: self.__objects[k].to_dict()
                      for k in self.__objects.keys()}
 
@@ -29,3 +31,11 @@ class FileStorage:
                     self.__objects[key] = attr_value
         except FileNotFoundError:
             pass
+
+    def delete(self, obj):
+        """
+        Delete obj from __objects if it's inside
+        """
+        key = "{}.{}".format(obj.__class__.__name__, obj.id)
+        if key in self.__objects:
+            del self.__objects[key]
