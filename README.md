@@ -70,6 +70,120 @@ EOF help quit
 $
 ```
 ```
+## How to use the console
+
+To show command help, we enter the command help:
+
+```
+$ ./console.py
+(hbnb) help
+
+Documented commands (type help <topic>):
+========================================
+EOF help quit
+
+(hbnb)
+```
+To quit the Console, press CTRL+D (to input EOF signal) or enter quit command:
+
+```
+$ ./console.py
+(hbnb) EOF
+$
+```
+
+```
+$ ./console.py
+(hbnb) quit
+$
+```
+
+
+# Commands
+
+Holberton console handles the followings commands:
+
+* create: 
+	* Creates a new instance of BaseModel, saves it (to the JSON file) and prints the id.
+	* Usage: create <class name>
+
+Example of creating a User:
+
+```
+$ ./console.py
+(hbnb) create User
+82a6f205-779b-4292-8678-fb53c90fb64e
+(hbnb)
+```
+
+* show:
+	* Prints the string representation of an instance based on the class name and id.
+	* Usage: show <class name> <id>
+
+Example of showing the User instance:
+
+```
+$ ./console.py
+(hbnb) show User 83880763-f364-4e70-8bc5-1ad5218378fe
+(hbnb) show User 83880763-f364-4e70-8bc5-1ad5218378fe
+[User] (83880763-f364-4e70-8bc5-1ad5218378fe) {'id': '83880763-f364-4e70-8bc5-1ad5218378fe', 'created_at': datetime.datetime(2023, 8, 10, 13, 29, 20, 460431), 'updated_at': datetime.datetime(2023, 8, 10, 13, 29, 20, 460436)}
+(hbnb)
+```
+
+* destroy:
+	* Deletes an instance based on the class name and id (save the change into the JSON file).
+	* Usage: destroy <class name> <id>
+
+Example of destroying an instance of User that is already stored in the JSON file:
+
+```
+$ ./console.py
+(hbnb) destroy User 83880763-f364-4e70-8bc5-1ad5218378fe
+(hbnb)
+```
+
+* all:
+	* Prints all string representation of all instances based or not on the class name.
+	* Usage: all <class name> or all
+
+Example of printing instances of all classes:
+```
+$ ./console.py
+(hbnb) all
+["[BaseModel] (c07899a9-85f0-439b-851e-624bbb74b996) {'id': 'c07899a9-85f0-439b-851e-624bbb74b996', 'created_at': datetime.datetime(2023, 8, 10, 13, 42, 47, 772518), 'updated_at': datetime.datetime(2023, 8, 10, 13, 42, 47, 772525)}", "[BaseModel] (12f855f0-0b0e-44ab-baee-1d0e29d3a51f) {'id': '12f855f0-0b0e-44ab-baee-1d0e29d3a51f', 'created_at': datetime.datetime(2023, 8, 10, 13, 42, 49, 896756), 'updated_at': datetime.datetime(2023, 8, 10, 13, 42, 49, 896759)}", "[Place] (268500c2-ce81-428a-be70-e71b2ca61704) {'id': '268500c2-ce81-428a-be70-e71b2ca61704', 'created_at': datetime.datetime(2023, 8, 10, 13, 42, 55, 799743), 'updated_at': datetime.datetime(2023, 8, 10, 13, 42, 55, 799748)}", "[Place] (707a4dc3-e294-4d09-a6e6-24f0302125c4) {'id': '707a4dc3-e294-4d09-a6e6-24f0302125c4', 'created_at': datetime.datetime(2023, 8, 10, 13, 42, 57, 317565), 'updated_at': datetime.datetime(2023, 8, 10, 13, 42, 57, 317569)}", "[Amenity] (5ccd437b-7ee0-4919-b652-c96ea48ef3e2) {'id': '5ccd437b-7ee0-4919-b652-c96ea48ef3e2', 'created_at': datetime.datetime(2023, 8, 10, 13, 43, 3, 162054), 'updated_at': datetime.datetime(2023, 8, 10, 13, 43, 3, 162058)}"]
+(hbnb)
+```
+
+Example of printing instance of a specific class (for example : Place)
+```
+$ ./console.py
+(hbnb) all Place
+["[Place] (268500c2-ce81-428a-be70-e71b2ca61704) {'id': '268500c2-ce81-428a-be70-e71b2ca61704', 'created_at': datetime.datetime(2023, 8, 10, 13, 42, 55, 799743), 'updated_at': datetime.datetime(2023, 8, 10, 13, 42, 55, 799748)}", "[Place] (707a4dc3-e294-4d09-a6e6-24f0302125c4) {'id': '707a4dc3-e294-4d09-a6e6-24f0302125c4', 'created_at': datetime.datetime(2023, 8, 10, 13, 42, 57, 317565), 'updated_at': datetime.datetime(2023, 8, 10, 13, 42, 57, 317569)}"]
+(hbnb)
+```
+
+* update:
+	* Updates an instance based on the class name and id by adding or updating attribute (save the change into the JSON file).
+	* Usage: update <class name> <id> <attribute name> "<attribute value>"
+
+```
+$ ./console.py
+(hbnb) update Place 268500c2-ce81-428a-be70-e71b2ca61704 number_rooms 35
+(hbnb) 
+```
+
+# Tests
+
+Launch tests:
+```
+python3 -m unittest discover tests
+```
+
+All tests should also pass in non-interactive mode: 
+
+```
+$ echo "python3 -m unittest discover tests" | bash
+```
 
 # Authors :
 
