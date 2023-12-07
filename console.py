@@ -1,58 +1,62 @@
 #!/usr/bin/python3
+"""
+Console front end of hbnb project
+"""
+
 import cmd
-import models
-import re
 from models.base_model import BaseModel
+from models.engine.file_storage import FileStorage
 
 class HBNBCommand(cmd.Cmd):
-    prompt = '(hbnb)'
-    __classNames = ["BaseModel"]
+    prompt = "hbnb"
 
-    def do_EOF(self, arg):
-        print()
+    def do_EOF(self, line):
+        """
+        Exit the program on EOF
+        """
+
+        print("Exiting the HBNB console...")
         return True
     
     def do_quit(self, arg):
+        """
+        Exit the program
+        """
+
+        print("Exiting the HBNB console...")
         return True
     
-    def default(self, arg):
-        cmds = {
-            "show": self.do_show,
-            "all": self.do_all,
-            "destroy": self.do_destroy,
-            "update": self.do_update,
-            "count": self.do_couunt
-        }
-    
-    def do_show(self, arg):
-        args = self.split(arg)
+    def emptyline(self):
 
-        if len(args) == 1 and args[0] == "":
+        """
+        Do nothing on an empty line
+        """
+        pass
+
+
+    def do_create(self, args):
+        """
+        Creates a new instance of BadeModel
+        Uusage: create BaseModel
+        """
+
+        if not args:
             print("** class name missing **")
-        elif args[0] not in self.__classNames:
+            return
+        
+        class_name = args.split()[0]
+
+        if class_name != "BaseModel":
             print("** class doesn't exist **")
-        elif len(args) == 1:
-            print("** instance id missing **")
-        else:
-            key = args[0] + "." + args[1]
-            objects = models.storage.all()
+            return
+        new_intstance = BaseModel()
 
-            if key in objects.keys():
-                print(objects[key].__str__())
-            else:
-                print("** no instance found **")
+        storage.new(new_intstance)
+        storage.save()
 
-    def do_all(self, arg):
-        args = self.split(arg)
-        obbjects = models.storage.all()
+        print(new_intstance.id)
 
-        if len(args) == 1 and args[0] == "":
-            print([obj.__str__() for obj in object.values()])
-        elif args[0] not in self.__classNames:
-            print("** class doesn't exist **")
-        else:
-            print([obj.__str__() for obj in object.vaalues()
-                   if obj.__class__.__name__== args[0]])
+
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
