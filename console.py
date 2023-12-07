@@ -8,7 +8,7 @@ from models.base_model import BaseModel
 from models import storage
 
 class HBNBCommand(cmd.Cmd):
-    prompt = "hbnb"
+    prompt = "(hbnb)"
 
     def do_EOF(self, line):
         """
@@ -55,6 +55,34 @@ class HBNBCommand(cmd.Cmd):
         storage.save()
 
         print(new_intstance.id)
+
+    def do_show(self, args):
+
+        """
+        print string representation of an instance base on
+        class and id
+        Usage: show BaseModel 1234-1234-1234
+        """
+
+        if not args:
+            print("** class name missing **")
+            return
+        
+        args = args.split()
+        class_name = args[0]
+
+        if len(args) < 2:
+            print("** instance id missing **")
+            return
+        
+        obj_id = args[1]
+        key = "{}.{}".format(class_name, obj_id)
+        obj_dict = storage.all()
+
+        if key in obj_dict:
+            print(obj_dict[key])
+        else:
+            print("** no instance found **")
 
 
 
