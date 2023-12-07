@@ -5,7 +5,7 @@ Console front end of hbnb project
 
 import cmd
 from models.base_model import BaseModel
-from models.engine.file_storage import FileStorage
+from models import storage
 
 class HBNBCommand(cmd.Cmd):
     prompt = "hbnb"
