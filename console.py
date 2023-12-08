@@ -6,7 +6,7 @@ Console front end of hbnb project
 import cmd
 from models.base_model import BaseModel
 from models import storage
-from models.user import User
+#from models.user import User
 
 class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb)"
@@ -40,7 +40,7 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, args):
         """
         Creates a new instance of BadeModel
-        Uusage: create BaseModel
+        Usage: create BaseModel
         """
 
         if not args:
@@ -139,6 +139,56 @@ class HBNBCommand(cmd.Cmd):
             return
 
         print([str(obj_dict[key]) for key in obj_dict if key.startswith(class_name + ".")])
+
+    def do_update(self, args):
+        """
+        Updates an instance based on the class name and id adding
+        or updateing the attributes
+        Usage: update <class_name> <id> <attribute name> "attribute name"
+        """
+        if not args:
+            print("** class name missing **")
+            return
+        
+        args = args.split()
+        class_name = args[0]
+        
+        if len(args) < 2:
+            print("** instance id missing **")
+            return
+        
+        obj_id  = args[1]
+        key = "{}.{}".format(class_name, obj_id)
+
+        obj_dict = storage.all()
+        
+        if key not in obj_dict:
+            print("** no instance found **")
+            return
+        
+        if len(args) < 4:
+            print("** attribute name missing **")
+            return
+        
+        attr_name = args[2]
+        attr_value = args[3]
+
+        instance = obj_dict[key]
+        attr_type = type(getattr(instance, attr_name, None))
+
+        if attr_type is None:
+            print("** value missing **")
+            return
+        
+        try:
+            casted_value = attr_type(attr_value)
+        
+        except (ValueError, TypeError):
+            print(f"Invalid value for {attr_name}")
+            return
+        
+        setattr(instance, attr_name, casted_value)
+        storage.save()
             
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
