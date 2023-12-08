@@ -4,9 +4,18 @@ Console front end of hbnb project
 """
 
 import cmd
+import models
+from datetime import datetime
 from models.base_model import BaseModel
 from models import storage
-#from models.user import User
+from models.user import user
+from models.state import state
+from models.city import City
+from models.amenity import Amenity
+from models.place import Place
+from models.review import Review
+import re
+from shlex import split
 
 class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb)"
