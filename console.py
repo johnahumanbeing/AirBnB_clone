@@ -6,7 +6,7 @@ Console front end of hbnb project
 import cmd
 from models.base_model import BaseModel
 from models import storage
-from models.user import User
+#from models.user import User
 
 class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb)"
@@ -40,7 +40,7 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, args):
         """
         Creates a new instance of BadeModel
-        Uusage: create BaseModel
+        Usage: create BaseModel
         """
 
         if not args:
