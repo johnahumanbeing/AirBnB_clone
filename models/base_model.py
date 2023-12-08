@@ -26,7 +26,7 @@ class BaseModel:
                     self.id = value
                 elif key == "created_at":
                     self.created_at = datetime.strptime(value, format)
-                elif key == "udated_at":
+                elif key == "updated_at":
                     self.updated_at = datetime.strptime(value, format)
                 else:
                     self.__dict__[key] = value
