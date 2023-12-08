@@ -20,7 +20,12 @@ from shlex import split
 class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb)"
     __ClassNames = ["BaseModel",
-                    "User"]
+                    "User",
+                    "State",
+                    "City",
+                    "Amenity",
+                    "Place",
+                    "Review"]
 
     def do_EOF(self, line):
         """
