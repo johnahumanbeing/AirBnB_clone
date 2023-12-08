@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 from models.base_model import BaseModel
 
-class state(BaseModel):
+class State(BaseModel):
     """
     This is the class state
 
