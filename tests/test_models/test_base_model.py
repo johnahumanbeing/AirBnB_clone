@@ -1,14 +1,23 @@
 #!/usr/bin/python3
 from models.base_model import BaseModel
+from unittest import TestCase, mock, main
+import datetime
+import models
+from io import StringIO
 
-my_model = BaseModel()
-my_model.name = "My First Model"
-my_model.my_number = 89
-print(my_model)
-my_model.save()
-print(my_model)
-my_model_json = my_model.to_dict()
-print(my_model_json)
-print("JSON of my_model:")
-for key in my_model_json.keys():
-    print("\t{}: ({}) - {}".format(key, type(my_model_json[key]), my_model_json[key]))
+class TestBaseModel(TestCase):
+
+    def test_created_at(self):
+        mock_date = datetime.datetime.now()
+        datetime_mock = mock.Mock(wraps=datetime.datetime)
+        datetime_mock.now.return_value = mock_date
+        with mock.patch('models.base_model.datetime', new=datetime_mock):
+            base = BaseModel()
+            self.assertEqual(base.created_at, mock_date)
+
+    def test_updated_at(self):
+        mock_date = datetime.datetime.now()
+        datetime_mock = mock.Mock(wraps=datetime.datetime)
+        with mock.patch('models.base_model.datetime', new=datetime_mock):
+            base = BaseModel()
+            self.assertEqual(base.updated_at, mock_date)
