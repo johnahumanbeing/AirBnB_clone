@@ -6,9 +6,12 @@ Console front end of hbnb project
 import cmd
 from models.base_model import BaseModel
 from models import storage
+from models.user import User
 
 class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb)"
+    __ClassNames = ["BaseModel",
+                    "User"]
 
     def do_EOF(self, line):
         """
