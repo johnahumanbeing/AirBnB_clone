@@ -3,9 +3,12 @@
 """
 This is a class defining BaseModel
 """
+
+
 from uuid import uuid4
 from datetime import datetime
 import models
+
 
 class BaseModel:
     """
@@ -15,10 +18,9 @@ class BaseModel:
         **kwargs: attributes
     """
     def __init__(self, *args, **kwargs):
-        self.id= str(uuid4())
+        self.id = str(uuid4())
         self.created_at = datetime.now()
         self.updated_at = datetime.now()
-
 
         if len(kwargs) != 0:
             format = "%Y-%m-%dT%H:%M:%S.%f"
