@@ -20,6 +20,7 @@ from models.state import State
 from models.city import City
 from models.engine.file_storage import FileStorage
 
+
 class TestConsole_prompt(TestCase):
     """Test console prompt"""
 
