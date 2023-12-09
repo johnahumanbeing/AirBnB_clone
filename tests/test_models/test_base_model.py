@@ -10,6 +10,7 @@ from unittest import TestCase, mock, main
 import datetime
 from io import StringIO
 
+
 class TestBaseModel(TestCase):
 
     def test_unique_id(self):
