@@ -6,6 +6,7 @@ This is a class defining city
 
 from models.base_model import BaseModel
 
+
 class City(BaseModel):
     """
     This is city class
