@@ -19,6 +19,7 @@ class BaseModel:
         self.created_at = datetime.now()
         self.updated_at = datetime.now()
 
+
         if len(kwargs) != 0:
             format = "%Y-%m-%dT%H:%M:%S.%f"
             for key, value in kwargs.items():

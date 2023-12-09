@@ -17,6 +17,7 @@ from models.review import Review
 import re
 from shlex import split
 
+
 class HBNBCommand(cmd.Cmd):
     prompt = "(hbnb)"
     __ClassNames = ["BaseModel",
@@ -34,7 +35,7 @@ class HBNBCommand(cmd.Cmd):
 
         print("Exiting the HBNB console...")
         return True
-    
+
     def do_quit(self, arg):
         """
         Exit the program
@@ -42,14 +43,13 @@ class HBNBCommand(cmd.Cmd):
 
         print("Exiting the HBNB console...")
         return True
-    
+
     def emptyline(self):
 
         """
         Do nothing on an empty line
         """
         pass
-
 
     def do_create(self, args):
         """
@@ -60,7 +60,7 @@ class HBNBCommand(cmd.Cmd):
         if not args:
             print("** class name missing **")
             return
-        
+
         class_name = args.split()[0]
 
         if class_name != "BaseModel":
@@ -84,14 +84,14 @@ class HBNBCommand(cmd.Cmd):
         if not args:
             print("** class name missing **")
             return
-        
+
         args = args.split()
         class_name = args[0]
 
         if len(args) < 2:
             print("** instance id missing **")
             return
-        
+
         obj_id = args[1]
         key = "{}.{}".format(class_name, obj_id)
         obj_dict = storage.all()
@@ -101,7 +101,6 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** no instance found **")
 
-    
     def do_destroy(self, args):
         """
         Deletes an instance based on the class name and id
@@ -111,15 +110,15 @@ class HBNBCommand(cmd.Cmd):
         if not args:
             print("** class name missing **")
             return
-        
+
         args = args.split()
         class_name = args[0]
 
         if len(args) < 2:
             print("** instance id missing **")
             return
-        
-        obj_id  = args[1]
+
+        obj_id = args[1]
         key = "{}.{}".format(class_name, obj_id)
 
         obj_dict = storage.all()
@@ -132,10 +131,10 @@ class HBNBCommand(cmd.Cmd):
         else:
             print("** no instance found **")
 
-
     def do_all(self, args):
         """
-        Prints all string representation of all instances based or not on the class name
+        Prints all string representation of all instances based or
+        not on the class name
         Usage: all BaseModel or all
         """
         obj_dict = storage.all()
@@ -152,7 +151,8 @@ class HBNBCommand(cmd.Cmd):
             print("** class doesn't exist **")
             return
 
-        print([str(obj_dict[key]) for key in obj_dict if key.startswith(class_name + ".")])
+        print([str(obj_dict[key]) for key in obj_dict
+              if key.startswith(class_name + ".")])
 
     def do_update(self, args):
         """
@@ -163,27 +163,27 @@ class HBNBCommand(cmd.Cmd):
         if not args:
             print("** class name missing **")
             return
-        
+
         args = args.split()
         class_name = args[0]
-        
+
         if len(args) < 2:
             print("** instance id missing **")
             return
-        
-        obj_id  = args[1]
+
+        obj_id = args[1]
         key = "{}.{}".format(class_name, obj_id)
 
         obj_dict = storage.all()
-        
+
         if key not in obj_dict:
             print("** no instance found **")
             return
-        
+
         if len(args) < 4:
             print("** attribute name missing **")
             return
-        
+
         attr_name = args[2]
         attr_value = args[3]
 
@@ -193,16 +193,17 @@ class HBNBCommand(cmd.Cmd):
         if attr_type is None:
             print("** value missing **")
             return
-        
+
         try:
             casted_value = attr_type(attr_value)
-        
+
         except (ValueError, TypeError):
             print(f"Invalid value for {attr_name}")
             return
-        
+
         setattr(instance, attr_name, casted_value)
         storage.save()
-            
+
+
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
