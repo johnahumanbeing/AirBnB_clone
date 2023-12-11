@@ -186,11 +186,11 @@ class TestBaseModel_Kwargs(TestCase):
         """
         test base model with kwargs
         """
-        base = BaseModel(first_name="Hajar", last_name="El Abdellaoui")
+        base = BaseModel(first_name="Ian", last_name="Njuguna")
         self.assertIn("first_name", base.__dict__.keys())
         self.assertIn("last_name", base.__dict__.keys())
-        self.assertIn("Hajar", base.__dict__.values())
-        self.assertIn("El Abdellaoui", base.__dict__.values())
+        self.assertIn("Ian", base.__dict__.values())
+        self.assertIn("Njuguna", base.__dict__.values())
 
     def test_base_model_created_at_type_None(self):
         """
