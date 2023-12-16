@@ -1,7 +1,8 @@
 header {
-    color: white;
+    background-color: white;
     height: 70px;
     width: 100%;
+    display: flex;
     border-bottom: 1px #CCCCCC;
     align-items: center;
 }
